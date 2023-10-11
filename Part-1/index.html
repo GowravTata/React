@@ -8,12 +8,27 @@
   <body>
     <div>id="root"</div>
 
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin=""
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
 
     <script>
       function App() {
-        return React.createElement("header", null, "Hello React!"); // The react object is coming from above
+        // const time = new Date().toLocaleDateString();
+        const [time, setTime] = React.useState(new Date().toLocaleDateString());
+
+        React.useEffect(function () {
+          setInterval(function () {
+            setTime(new Date().toLocaleDateString());
+          }, 1000);
+        }, []);
+
+        return React.createElement("header", null, `Hello React! ${time}`); // The react object is coming from above
       }
 
       const root = ReactDOM.createRoot(document.getElementById("root"));
