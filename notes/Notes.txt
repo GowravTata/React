@@ -1,0 +1,15 @@
+
+Components are the buliding blocks of React, react is entirely made of components
+
+Takes all the components and makes into a component
+
+React renders the view for one component and combines it
+
+Each component has Data, Logic , Appearance
+
+Complex UIs by building multiple components
+
+Components are nested one inside other, just like filter 
+
+Component tree show how components are linked to each other
+
