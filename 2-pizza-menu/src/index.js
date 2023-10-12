@@ -82,20 +82,23 @@ function Menu() {
       {/* Each component can be used multiple times */}
       <Pizza
         name='Pizza Spinaci'
-        ingredient='Tomato, mozarella, spinach, and ricotta cheese'
+        ingredients='Tomato, mozarella, spinach, and ricotta cheese'
         photoName='pizzas/spinaci.jpg'
-        price='10' />  {/* props were written like this */}
+        price={10} />  {/* props were written like this */}
     </main>
   )
 }
 
-function Pizza() {
+function Pizza(props) {
   // Passing the data from parent to child, i.e., is from Menu to Pizza
   return (
-    <div>
-      <img src='/pizzas/spinaci.jpg' alt="Pizza Spinaci" />
-      <h3>Pizza Spinaci</h3>
-      <p>Tomato, mozarella, spinach, and ricotta cheese </p>
+    <div className="pizza">
+      <img src={props.photoName} alt={props.name} />
+      <div>
+        <h3>{props.name}</h3>
+        <p>{props.ingredients}</p>
+        <span>{props.price + 3}</span>
+      </div>
     </div>
   )
 }
@@ -104,7 +107,6 @@ function Footer() {
   const hour = new Date().getHours();
   const [openHour, closeHour] = [12, 22];
   const isOpened = hour >= openHour && hour <= closeHour ? 'open' : 'closed'
-  console.log(hour);
   return (
     <footer className="footer">{new Date().toLocaleTimeString()} We're Currently {isOpened}</footer>
   );

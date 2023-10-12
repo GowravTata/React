@@ -1,1 +1,5 @@
 Parent component to child component
+
+Props is data coming from the ourside , can be updated only be the parent component
+
+State is the internal data that can be updated by the parent component
