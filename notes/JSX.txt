@@ -1,0 +1,20 @@
+
+
+Component consists Data, Logic, Appearance
+
+JSX a declarative syntax, on what component looks like and how they work
+
+Components must return a block of JSX
+
+JSX is an extension of JavaScript, allows to embed JavaScript, CSS and React components into HTML
+
+Each JSX element is converted into React.createElement function call
+
+We could use React without JSX
+
+There is no need of any DOM with JSX
+
+React is huge abstraction from DOM, UI is a reflection of the current data
+
+In declarative , we use JSX to tell what to see on the screen
+In 
