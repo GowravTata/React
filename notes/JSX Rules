@@ -1,0 +1,7 @@
+
+JSX works like HTML, with {}
+Statement are not allowed in JSX
+
+JSX produces as JavaScript Expression
+
+JSX can have only one parent element
