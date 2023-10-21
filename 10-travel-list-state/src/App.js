@@ -7,11 +7,21 @@ const initialItems = [
 ]
 
 export default function App() {
+  const [items, setItems] = useState([]);
+
+  function handleAddItems(item) {
+    setItems((items) => [...items, item])
+  }
+
+  function handleDeleteItem(id) {
+    setItems((items) => items.filter(item => item.id !== id))
+  }
+
   return (
     <div className="app">
       <Logo />
-      <Form />
-      <PackingList />
+      <Form onAddItems={handleAddItems} />
+      <PackingList items={items} />
       <Stats />
     </div>
   )
@@ -23,18 +33,18 @@ function Logo() {
   )
 }
 
-function Form() {
+function Form({ onAddItems }) {
 
   // Creating a state for controlled element
   // First step is to create the state, second is to place the state in the place where it has to be declared, third is to 
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
   // When the APP is opened for the first time, page has to be blank
-  const [items, setItems] = useState([]);
+  // const [items, setItems] = useState([]);
 
-  function handleItems(item) {
-    setItems((items) => [...items, item])
-  }
+  // function handleAddItems(item) {
+  //   setItems((items) => [...items, item])
+  // }
   function handleSubmit(e) {
     // This is to change the default behaviour of the HTML file , to stop flashing whenever the submit button is pressed
     e.preventDefault();
@@ -45,7 +55,7 @@ function Form() {
     }
     console.log(newItem);
     // Adding the items to the 
-    handleItems(newItem)
+    onAddItems(newItem)
     // After the submission, the form should go to the initial state, it can be done like this
     setDescription("");
     setQuantity(1);
@@ -73,11 +83,12 @@ function Form() {
   )
 }
 
-function PackingList() {
+function PackingList({ items }) {
   return (
     <div className="list">
       <ul >
-        {initialItems.map(item => <Item item={item} key={item.id} />)}
+        {/* Using Items state directly in the JSX */}
+        {items.map(item => <Item item={item} key={item.id} />)}
         {/* LIST */}
       </ul>
     </div>
