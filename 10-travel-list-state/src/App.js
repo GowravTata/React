@@ -99,13 +99,14 @@ function PackingList({ items, onDeleteItem }) {
   );
 }
 
-function Item({ item }) {
+function Item({ item, onDeleteItem }) {
   return (
     <li>
       <span style={item.packed ? { textDecoration: "line-through" } : {}}>
         {item.quantity} {item.description}{" "}
       </span>
-      <button onClick={() => alert("Deleted")}>❌</button>
+      <button onClick={onDeleteItem}>❌</button>
+      {/* <button onClick={() => alert("Deleted")}>❌</button> */}
     </li>
   );
 }
