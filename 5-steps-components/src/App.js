@@ -6,9 +6,19 @@ const messages = [
     "Apply for jobs 💼",
     "Invest your new income 🤑",
 ]
+const bgColor = '#7950f2';
+const textColor = '#fff';
 
 
 export default function App() {
+    return (
+        <div>
+            <Steps />
+        </div>
+    )
+}
+
+function Steps() {
     /*
     Using state in the practice
     */
@@ -54,17 +64,23 @@ export default function App() {
                     </p>
                     <div className="buttons">
                         {/* In React, we add the events directly on the event handlers */}
-                        <button style={{ backgroundColor: '#7950f2', color: "#fff" }}
-                            onClick={handlePrevious}
-                        // onMouseEnter={() => alert('TEST')}
-                        >Previous
-                        </button>
-                        <button style={{ backgroundColor: '#7950f2', color: "#fff" }} onClick={handleNext} >
-                            Next
-                        </button>
+                        <Button textColor={textColor} bgColor={bgColor} onClick={handlePrevious}>
+                            <span>👈🏻</span> Previous </Button>
+                        <Button textColor={textColor} bgColor={bgColor} onClick={handleNext} text='Next' emoji='👉🏻'>
+                            Next <span>👉🏻</span></Button>
                     </div >
                 </div >)
             }
         </>
     );
+}
+
+function Button({ textColor, bgColor, onClick, children }) {
+    return (
+        <button style={{ backgroundColor: bgColor, color: textColor }}
+            onClick={onClick}>
+            {/* <span>{emoji}</span> */}
+            {children}
+        </button>
+    )
 }
