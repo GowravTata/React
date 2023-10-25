@@ -39,6 +39,7 @@ function TipCalculator() {
   )
 }
 
+
 function BillInput({ bill, onSetBill }) {
   return (
     <div>
