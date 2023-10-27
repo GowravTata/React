@@ -74,6 +74,14 @@ function Main({ children }) {
   return <main className="main">{children}</main>;
 }
 
+function SelectedMovie({ selectedId }) {
+  return (
+    <div className="details">
+      {selectedId}
+    </div>
+  )
+}
+
 function WatchSummary({ watched }) {
   const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
   const avgUserRating = average(watched.map((movie) => movie.userRating));
@@ -199,6 +207,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [query, setQuery] = useState('');
+  const [selectedId, setSelectedId] = useState("tt0088763");
 
   // useEffect(function () {
   //   console.log('After Initial Render')
@@ -279,13 +288,20 @@ export default function App() {
           {error && <ErrorMessage message={error} />}
         </Box>
         <Box>
-          <WatchSummary watched={watched} />
-          <WatchedMovieList watched={watched} />
+          {
+            selectedId ? <SelectedMovie selectedId={selectedId} /> :
+              <>
+                <WatchSummary watched={watched} />
+                <WatchedMovieList watched={watched} />
+              </>
+          }
         </Box>
       </Main>
     </>
   );
 }
+
+
 
 function Loader() {
   return (
