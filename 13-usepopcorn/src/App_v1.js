@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Logo from "./Logo";
 const tempMovieData = [
   {
@@ -58,7 +58,8 @@ function NumResults({ movies }) {
   );
 }
 
-function Search({ query, setQuery }) {
+function Search() {
+  const [query, setQuery] = useState("");
   return (
     <input
       className="search"
@@ -192,74 +193,14 @@ function NavBar({ children }) {
   );
 }
 
-const Key = '29ecd1e6';
 export default function App() {
-  const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [query, setQuery] = useState('');
-
-  // useEffect(function () {
-  //   console.log('After Initial Render')
-  // }, [])
-  // useEffect(function () {
-  //   console.log('After every render')
-  // })
-  // useEffect(function () {
-  //   console.log('D')
-  // }, [query])
-
-  // console.log('During render');
-
-  /**
-  This effect runs only the render is happening only once, when the component first mounts
-  Side effect that makes something usefull , like fetching some data from the API
-  Side effect should not be in render logic,
-  side effect can be used in event handlers, 
-  useeffect means write a code that runs in different moments of a instance lifecycle 
-  side effect can also get a cleanup function
-  we use the effect to keep the component in sync with the external world
-  we use eventhandlers to react to a certain event that happens in UI
-   */
-
-  useEffect(function () {
-    async function fetchMovies() {
-      try {
-        setIsLoading(true)
-        setError('')
-        const res = await fetch(`http://www.omdbapi.com/?s=${query}&apikey=${Key}&`)
-        if (!res.ok)
-          throw new Error('Something went wrong with fetching movies')
-
-        const data = await res.json()
-        if (data.Response === 'False') throw new Error('Movie not found ')
-
-        setMovies(data.Search);
-        // console.log(data);
-      } catch (err) {
-        // console.error(err.message);
-        setError(err.message)
-      } finally {
-        setIsLoading(false)
-
-      }
-    }
-    // Before calling the function  if there is no query , the below handles to reset the states that are present
-    if (query.length < 3) {
-      setMovies([])
-      setError("")
-      return;
-    }
-    fetchMovies();
-  }, [query])
-
-
+  const [movies, setMovies] = useState(tempMovieData);
+  const [watched, setWatched] = useState(tempWatchedData);
 
   return (
     <>
       <NavBar>
-        <Search query={query} setQuery={setQuery} />
+        <Search />
         <NumResults movies={movies} />
       </NavBar>
       <Main>
@@ -274,9 +215,7 @@ export default function App() {
           }
         /> */}
         <Box>
-          {isLoading && <Loader />}
-          {!isLoading && !error && <MovieList movies={movies} />}
-          {error && <ErrorMessage message={error} />}
+          <MovieList movies={movies} />
         </Box>
         <Box>
           <WatchSummary watched={watched} />
@@ -285,20 +224,6 @@ export default function App() {
       </Main>
     </>
   );
-}
-
-function Loader() {
-  return (
-    <p className="loader">Loading</p>
-  )
-}
-
-function ErrorMessage({ message }) {
-  return (
-    <p className="error">
-      <span>⛔</span> {message}
-    </p>
-  )
 }
 
 function Box({ children }) {

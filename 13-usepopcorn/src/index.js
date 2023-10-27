@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
-// import './index.css';
-// import App from './App';
+import './index.css';
+import App from './App';
 import StarRating from './StarRating';
 
 function Test() {
@@ -13,12 +13,14 @@ function Test() {
     </div>
   )
 }
+const api_key = 'eadee970';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <StarRating maxRating={10} defaultRating={3} />
+    {/* <StarRating maxRating={10} defaultRating={3} />
     <StarRating maxRating={3} className='test' messages={['Good', 'Average', 'Bad']} defaultRating={3} />
-    <Test />
+    <Test /> */}
+    <App />
   </React.StrictMode>
 );
