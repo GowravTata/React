@@ -1,0 +1,25 @@
+Install this
+
+npm install eslint vite-plugin-eslint eslint-config-react-app --save-dev
+
+create a new file named .eslintrc.json
+add the following 
+{
+  "extends": "react-app"
+}
+
+
+In the vite_config.js, make the changes as follows 
+
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import eslint from "vite-plugin-eslint"
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react(), eslint()],
+})
+
+
+To install react router
+npm i react-router-dom@6
