@@ -1,9 +1,11 @@
-import AppNav from "./AppNav";
-import Logo from "./Logo";
 import styles from "./Footer.module.css";
 
-function Footer({ children }) {
-  return <div className={styles.Footer}>{children}</div>;
+function Footer(children) {
+  return (
+    <footer className={styles.Footer}>
+      <>{children}</>
+    </footer>
+  );
 }
 
 export default Footer;
